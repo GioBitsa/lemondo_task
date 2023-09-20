@@ -1,0 +1,98 @@
+@import "colors";
+@import "variables";
+
+.mainContainer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  min-height: 100vh;
+  background-color: white;
+  transition: $transition;
+  z-index: 10;
+
+  &.open {
+    left: 0;
+  }
+
+  .filtersHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 0px 2px 5px #0000000f;
+
+    p {
+      color: $secondary;
+      font-weight: bold;
+    }
+
+    .closeIcon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $lightGray;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  }
+
+  .filtersContent {
+    .singleFilterContainer {
+      margin: 30px 0 35px;
+
+      input {
+        border: 2px solid $inputBorder;
+        width: 100%;
+        padding: 20px;
+        border-radius: 10px;
+        color: $gray;
+        font-size: 16px;
+
+        &:focus {
+          outline: none;
+        }
+
+        &::placeholder {
+          color: $gray;
+        }
+      }
+
+      label {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        color: $primary;
+        margin-bottom: 15px;
+      }
+
+      .priceInputContainer {
+        display: flex;
+        align-items: center;
+
+        input {
+          margin-right: 15px;
+          position: relative;
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            z-index: 100;
+          }
+        }
+      }
+    }
+  }
+}

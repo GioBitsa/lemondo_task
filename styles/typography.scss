@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "tktRegular", sans-serif;
+  src: url("/public/fonts/TKT-Regular.ttf");
+}
+
+@font-face {
+  font-family: "tktMedium", sans-serif;
+  src: url("/public/fonts/TKT-Medium.ttf");
+}
+
+$tktRegular: "tktRegular", sans-serif;
+$tktMedium: "tktMedium", sans-serif;
