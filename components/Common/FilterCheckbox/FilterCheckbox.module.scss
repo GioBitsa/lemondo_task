@@ -1,0 +1,30 @@
+@import "colors";
+
+.mainContainer {
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: fit-content;
+
+  .checkbox {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: $inputBorder;
+    margin-right: 15px;
+
+    &.checked {
+      background-color: $green;
+    }
+  }
+
+  label {
+    font-size: 16px;
+    color: $primary;
+    cursor: pointer;
+  }
+}

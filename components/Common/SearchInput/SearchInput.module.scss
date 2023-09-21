@@ -1,0 +1,18 @@
+@import "colors";
+
+.searchInput {
+  border: 2px solid $inputBorder;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  color: $gray;
+  font-size: 16px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $gray;
+  }
+}

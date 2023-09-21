@@ -1,6 +1,13 @@
 import React from "react";
 import styles from "./Filters.module.scss";
 import Image from "next/image";
+import {
+  FilterCheckbox,
+  NumberInput,
+  RangeSlider,
+  SearchInput,
+} from "../Common";
+import { filtersCategories, filtersDomains } from "@/constants";
 
 const Filters = ({ open, setOpen }: any) => {
   return (
@@ -19,11 +26,10 @@ const Filters = ({ open, setOpen }: any) => {
 
       <div className={`${styles.filtersContent} wrapper`}>
         <div className={styles.singleFilterContainer}>
-          <input
-            type="search"
-            defaultValue=""
+          <SearchInput
+            value=""
+            onChange={() => {}}
             placeholder="სახელით ძიება"
-            className={styles.searchInput}
           />
         </div>
 
@@ -31,55 +37,55 @@ const Filters = ({ open, setOpen }: any) => {
           <label htmlFor="priceFrom">ფასი</label>
 
           <div className={styles.priceInputContainer}>
-            <input
-              type="number"
-              name="priceFrom"
-              id="priceFrom"
+            <NumberInput
+              type="price"
               placeholder="- დან"
+              value=""
+              onChange={() => {}}
             />
-            <input
-              type="number"
-              name="priceFrom"
-              id="priceFrom"
+            <NumberInput
+              type="price"
               placeholder="- მდე"
+              value=""
+              onChange={() => {}}
             />
           </div>
 
-          <input
-            type="range"
-            name="priceRange"
-            id="priceRange"
-            min={0}
-            max={100}
-          />
+          <RangeSlider min={0} max={1000} step={100} priceCap={100} />
         </div>
 
         <div className={styles.singleFilterContainer}>
           <label htmlFor="priceFrom">სიმბოლოების რაოდენობა</label>
 
           <div className={styles.priceInputContainer}>
-            <input
-              type="number"
-              name="priceFrom"
-              id="priceFrom"
-              placeholder="- დან"
-            />
-            <input
-              type="number"
-              name="priceFrom"
-              id="priceFrom"
-              placeholder="- მდე"
-            />
+            <NumberInput placeholder="- დან" value="" onChange={() => {}} />
+            <NumberInput placeholder="- მდე" value="" onChange={() => {}} />
           </div>
 
-          <input
-            type="range"
-            name="priceRange"
-            id="priceRange"
-            min={0}
-            max={100}
-          />
+          <RangeSlider min={0} max={30} step={1} priceCap={1} />
         </div>
+
+        <div className={styles.singleFilterContainer}>
+          <label htmlFor="priceFrom">კატეგორიები</label>
+
+          {filtersCategories.map((category) => (
+            <FilterCheckbox
+              title={category}
+              checked={false}
+              onClick={() => {}}
+            />
+          ))}
+        </div>
+
+        <div className={styles.singleFilterContainer}>
+          <label htmlFor="priceFrom">დომენის ზონა</label>
+
+          {filtersDomains.map((domain) => (
+            <FilterCheckbox title={domain} checked={false} onClick={() => {}} />
+          ))}
+        </div>
+
+        <button>ძიება</button>
       </div>
     </div>
   );

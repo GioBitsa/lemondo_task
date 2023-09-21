@@ -44,3 +44,27 @@ export const headerLinks = [
     },
   ],
 ];
+
+export const filtersCategories = [
+  "ბიზნესი",
+  "უძრავი ქონება",
+  "ავტო",
+  "მედიცინა",
+  "ტექნოლოგიები",
+  "თამაშები",
+  "გართობა და დასვენება",
+  "მედია",
+  "განათლება",
+  "კომერცია",
+  "ფინანსები",
+  "ბიზნესი",
+];
+
+export const filtersDomains = [
+  ".ge",
+  ".com.ge",
+  ".net.ge",
+  ".org.ge",
+  ".edu.ge",
+  ".school.ge",
+];
