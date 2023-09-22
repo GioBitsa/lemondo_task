@@ -1,4 +1,5 @@
 import Navbar from "./Navbar/Navbar";
 import Filters from "./Filters/Filters";
+import SingleDomainItem from "./SingleDomainItem/SingleDomainItem";
 
-export { Navbar, Filters };
+export { Navbar, Filters, SingleDomainItem };

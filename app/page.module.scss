@@ -1,4 +1,5 @@
 @import "mixins";
+@import "colors";
 
 .BannerContainer {
   width: 100%;
@@ -36,7 +37,105 @@
 }
 
 .mainContainer {
-  margin: 40px 0;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 30px;
+  grid-column-gap: 40px;
+
+  & > h6 {
+    display: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: $secondary;
+
+    & span {
+      color: $primary;
+    }
+  }
+
+  .mobileFilters {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    button {
+      width: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid $inputBorder;
+      margin-right: 15px;
+      background-color: white;
+      cursor: pointer;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      p {
+        color: $secondary;
+      }
+    }
+  }
+
+  .desktopFilters {
+    display: none;
+    flex-direction: column;
+
+    & > div > h6 {
+      font-size: 14px;
+      font-weight: bold;
+      color: $primary;
+      margin-right: 15px;
+    }
+
+    .singleSortBtn {
+      display: flex;
+      align-items: center;
+      margin-right: 15px;
+      cursor: pointer;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.active {
+        p {
+          color: $green;
+        }
+
+        img {
+          display: block;
+        }
+      }
+
+      & p {
+        font-size: 14px;
+        margin-right: 6px;
+        color: $gray;
+      }
+
+      & img {
+        display: none;
+      }
+    }
+
+    .extraLink {
+      font-size: 14px;
+      color: $primary;
+      text-decoration: underline;
+      align-self: flex-end;
+      margin-top: 10px;
+    }
+  }
+
+  .domainList {
+    padding: 10px 20px;
+    background-color: white;
+  }
 }
 
 @include ipad {
@@ -50,10 +149,47 @@
 
 @include desktop {
   .BannerContainer {
+    width: calc(100% - 40px);
     height: 180px;
+    margin: 0 auto;
 
     h1 {
       font-size: 36px;
+    }
+  }
+
+  .mainContainer {
+    grid-template-columns: 1fr 2fr;
+
+    & > h6 {
+      display: block;
+    }
+
+    .mobileFilters {
+      display: none;
+    }
+
+    .desktopFilters {
+      display: flex;
+    }
+
+    .domainList {
+      border: 1px solid $lightGray;
+      border-radius: 15px;
+    }
+  }
+}
+
+@include largeDesktop {
+  .mainContainer {
+    .desktopFilters {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .extraLink {
+        margin: 0;
+      }
     }
   }
 }

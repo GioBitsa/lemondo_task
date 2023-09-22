@@ -1,12 +1,7 @@
 import { NumberInputType } from "@/types";
 import styles from "./NumberInput.module.scss";
 
-const NumberInput = ({
-  type,
-  placeholder,
-  value,
-  onChange,
-}: NumberInputType) => {
+const NumberInput = ({ type, placeholder, value }: NumberInputType) => {
   return (
     <div
       className={[
@@ -16,9 +11,9 @@ const NumberInput = ({
     >
       <input
         type="number"
-        value={value}
-        onChange={onChange}
+        defaultValue={value}
         placeholder={placeholder}
+        disabled
       />
     </div>
   );
