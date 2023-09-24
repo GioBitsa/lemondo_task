@@ -3,9 +3,19 @@
 import React from "react";
 import styles from "./SingleDomainItem.module.scss";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "@/redux/Slices/cartSlice";
 
 const SingleDomainItem = ({ data }: any) => {
-  const handleAddCart = () => {};
+  const dispatch = useDispatch();
+
+  const cartItems = useSelector((state: any) => state.cartReducer.cart);
+
+  const itemExistsInCart = cartItems.includes(data);
+
+  const handleAddCart = () => {
+    dispatch(addToCart(data));
+  };
 
   return (
     <div className={styles.mainContainer}>
@@ -33,15 +43,27 @@ const SingleDomainItem = ({ data }: any) => {
           <span>{data.price$} $</span>
         </div>
 
-        <div className={styles.cartBtn} onClick={() => handleAddCart()}>
-          <p>დამატება</p>
-          <Image
-            src="/images/CartWhiteIcon.svg"
-            alt="cart button"
-            width={20}
-            height={16}
-          />
-        </div>
+        {itemExistsInCart ? (
+          <div className={styles.alreadyInCart}>
+            <Image
+              src="/images/TickIcon.svg"
+              alt="tick icon"
+              width={18}
+              height={18}
+            />
+            <p>კალათაშია</p>
+          </div>
+        ) : (
+          <div className={styles.cartBtn} onClick={() => handleAddCart()}>
+            <p>დამატება</p>
+            <Image
+              src="/images/CartWhiteIcon.svg"
+              alt="cart button"
+              width={20}
+              height={16}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

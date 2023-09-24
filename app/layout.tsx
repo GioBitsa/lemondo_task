@@ -1,6 +1,6 @@
-import { Navbar } from "@/components";
 import "./globals.scss";
 import type { Metadata } from "next";
+import { ReduxProvider } from "@/redux/provider";
 
 export const metadata: Metadata = {
   title: "დომენები",
@@ -15,8 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );

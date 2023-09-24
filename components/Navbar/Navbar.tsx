@@ -3,8 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./Navbar.module.scss";
 import { headerLinks } from "@/constants";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const numberOfCartItems = useSelector(
+    (state: any) => state.cartReducer.cart.length
+  );
+
   return (
     <header className={styles.header}>
       <div className={`${styles.topHeader} wrapper`}>
@@ -38,13 +43,15 @@ const Navbar = () => {
               height={20}
             />
           </div>
-          <div className={styles.iconsContainer}>
+          <div className={[styles.iconsContainer, styles.cartIcon].join(" ")}>
             <Image
               src="/images/CartFilledIcon.svg"
               alt="cart"
               width={20}
               height={20}
             />
+
+            {numberOfCartItems > 0 && <span>{numberOfCartItems}</span>}
           </div>
           <div className={styles.iconsContainer}>
             <Image
@@ -65,13 +72,15 @@ const Navbar = () => {
               height={20}
             />
           </div>
-          <div className={styles.iconsContainer}>
+          <div className={[styles.iconsContainer, styles.cartIcon].join(" ")}>
             <Image
               src="/images/CartGrayIcon.svg"
               alt="cart"
               width={20}
               height={20}
             />
+
+            {numberOfCartItems > 0 && <span>{numberOfCartItems}</span>}
           </div>
           <div
             className={[styles.iconsContainer, styles.userIconContainer].join(
@@ -104,8 +113,12 @@ const Navbar = () => {
       <div className={styles.bottomHeader}>
         <div className={`${styles.bottomHeaderRow} wrapper`}>
           <div>
-            {headerLinks[0].map((link) => (
-              <Link href={link.path} className={styles.headerLink}>
+            {headerLinks[0].map((link, index) => (
+              <Link
+                key={link + "/" + index}
+                href={link.path}
+                className={styles.headerLink}
+              >
                 {link.title}
               </Link>
             ))}

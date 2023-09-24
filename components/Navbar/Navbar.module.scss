@@ -30,6 +30,25 @@
         &:last-child {
           margin: 0;
         }
+
+        &.cartIcon {
+          position: relative;
+
+          & > span {
+            position: absolute;
+            top: -50%;
+            left: 80%;
+            width: 20px;
+            height: 20px;
+            background-color: $red;
+            border-radius: 100%;
+            color: white;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
       }
     }
 
@@ -67,6 +86,25 @@
           p {
             margin: 0 20px 0 10px;
             color: $secondary;
+          }
+        }
+
+        &.cartIcon {
+          position: relative;
+
+          & > span {
+            position: absolute;
+            top: -10%;
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            background-color: $red;
+            border-radius: 100%;
+            color: white;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
