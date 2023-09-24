@@ -16,7 +16,7 @@ const Navbar = () => {
         <div className="d-flex items-center">
           <div className={styles.sidebar}>
             <Image
-              src="/images/sidebarIcon.svg"
+              src="/images/SidebarIcon.svg"
               alt="sidebar"
               width={20}
               height={16}
