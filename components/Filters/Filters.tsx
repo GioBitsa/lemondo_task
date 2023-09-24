@@ -36,32 +36,38 @@ const Filters = ({ open, setOpen }: any) => {
     const newArray = filtersValue?.domains;
 
     if (newArray && newArray.includes(value)) {
-      newArray.filter((item) => item !== value);
+      const updatedArray = newArray.filter((item) => item !== value);
+
+      setFiltersValue({
+        ...filtersValue,
+        domains: updatedArray,
+      });
     } else {
-      newArray?.push(value);
+      const updatedArray = newArray && [...newArray, value];
+      setFiltersValue({
+        ...filtersValue,
+        domains: updatedArray,
+      });
     }
-
-    setFiltersValue({
-      ...filtersValue,
-      domains: newArray,
-    });
-
-    console.log("new Array: ", newArray, " filtersValue: ", filtersValue);
   };
 
   const handleSelectCategories = (id: number) => {
     const newArray = filtersValue?.categories;
 
     if (newArray && newArray.includes(id)) {
-      newArray.filter((item) => item !== id);
+      const updatedArray = newArray.filter((item) => item !== id);
+      setFiltersValue({
+        ...filtersValue,
+        categories: updatedArray,
+      });
     } else {
-      newArray?.push(id);
-    }
+      const updatedArray = newArray && [...newArray, id];
 
-    setFiltersValue({
-      ...filtersValue,
-      categories: newArray,
-    });
+      setFiltersValue({
+        ...filtersValue,
+        categories: updatedArray,
+      });
+    }
   };
 
   return (

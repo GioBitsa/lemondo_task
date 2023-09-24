@@ -1,7 +1,7 @@
 import { FiltersValueType } from "@/types";
 
 export const filterData = (items: any[], filters: FiltersValueType): any[] => {
-  console.log(filters);
+  // console.log(filters);
 
   if (filters.priceFrom) {
     console.log(parseInt(items[0].price), parseInt(filters.priceFrom));
