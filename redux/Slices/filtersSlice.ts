@@ -1,14 +1,26 @@
 import { FiltersValueType } from "@/types";
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState: FiltersValueType = {};
+const initialState: FiltersValueType = {
+  search: "",
+  priceFrom: "",
+  priceTo: "",
+  symbolsFrom: "",
+  symbolsTo: "",
+  categories: [],
+  domains: [],
+};
 
 export const filtersSlice = createSlice({
   name: "filtersSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    setFilters: (state, action: PayloadAction<FiltersValueType>) => {
+      return action.payload;
+    },
+  },
 });
 
-export const {} = filtersSlice.actions;
+export const { setFilters } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

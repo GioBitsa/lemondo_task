@@ -26,7 +26,7 @@ export interface FiltersValueType {
   symbolsFrom?: string;
   symbolsTo?: string;
   categories?: number[];
-  domains?: number[];
+  domains?: string[];
 }
 
 export interface FiltersSingleCategory {

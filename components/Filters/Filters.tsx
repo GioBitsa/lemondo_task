@@ -11,8 +11,12 @@ import {
 } from "../Common";
 import { filtersCategories, filtersDomains } from "@/constants";
 import { FiltersValueType } from "@/types";
+import { useDispatch } from "react-redux";
+import { setFilters } from "@/redux/Slices/filtersSlice";
 
 const Filters = ({ open, setOpen }: any) => {
+  const dispatch = useDispatch();
+
   const [filtersValue, setFiltersValue] = useState<FiltersValueType>({
     search: "",
     priceFrom: "",
@@ -24,23 +28,25 @@ const Filters = ({ open, setOpen }: any) => {
   });
 
   const handleFilter = () => {
-    console.log(filtersValue);
+    dispatch(setFilters(filtersValue));
     setOpen(false);
   };
 
-  const handleSelectDomains = (id: number) => {
+  const handleSelectDomains = (value: string) => {
     const newArray = filtersValue?.domains;
 
-    if (newArray && newArray.includes(id)) {
-      newArray.filter((item) => item !== id);
+    if (newArray && newArray.includes(value)) {
+      newArray.filter((item) => item !== value);
     } else {
-      newArray?.push(id);
+      newArray?.push(value);
     }
 
     setFiltersValue({
       ...filtersValue,
       domains: newArray,
     });
+
+    console.log("new Array: ", newArray, " filtersValue: ", filtersValue);
   };
 
   const handleSelectCategories = (id: number) => {
@@ -101,7 +107,7 @@ const Filters = ({ open, setOpen }: any) => {
 
           <RangeSlider
             min={0}
-            max={5000}
+            max={100000}
             step={50}
             priceCap={100}
             setNumberFrom={(number) =>
@@ -157,8 +163,10 @@ const Filters = ({ open, setOpen }: any) => {
             <FilterCheckbox
               key={domain + "/" + domain.id}
               title={domain.title}
-              checked={filtersValue.domains?.includes(domain.id) ? true : false}
-              onClick={() => handleSelectDomains(domain.id)}
+              checked={
+                filtersValue.domains?.includes(domain.title) ? true : false
+              }
+              onClick={() => handleSelectDomains(domain.title)}
             />
           ))}
         </div>

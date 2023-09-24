@@ -125,8 +125,12 @@ const Navbar = () => {
           </div>
 
           <div>
-            {headerLinks[1].map((link) => (
-              <Link href={link.path} className={styles.headerLink}>
+            {headerLinks[1].map((link, index) => (
+              <Link
+                key={link + "/" + index}
+                href={link.path}
+                className={styles.headerLink}
+              >
                 {link.title}
               </Link>
             ))}

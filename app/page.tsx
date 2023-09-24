@@ -1,15 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./page.module.scss";
 import { SingleDomainItem, Filters, Navbar } from "@/components";
 import Link from "next/link";
 import { allDomains } from "@/constants";
+import { useSelector } from "react-redux";
+import { filterData } from "@/utils/filterData";
+import { LoadingComponent } from "@/components/Common";
 
 export default function Home() {
+  const filters = useSelector((state: any) => state.filtersReducer);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [activeSort, setActiveSort] = useState("addDate");
+  const [items, setItems] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    setItems(filterData(allDomains, filters));
+    setLoading(false);
+  }, [loading, filters]);
 
   return (
     <>
@@ -114,9 +126,15 @@ export default function Home() {
           </div>
           <Filters open={filtersOpen} setOpen={setFiltersOpen} />
           <div className={styles.domainList}>
-            {allDomains.map((item) => (
-              <SingleDomainItem key={item.id} data={item} />
-            ))}
+            {loading ? (
+              <LoadingComponent />
+            ) : items.length === 0 ? (
+              <div className="emptyData">ჩანაწერი ვერ მოიძებნა</div>
+            ) : (
+              items.map((item) => (
+                <SingleDomainItem key={item.id} data={item} />
+              ))
+            )}
           </div>
         </div>
       </main>
